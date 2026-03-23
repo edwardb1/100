@@ -1,0 +1,75 @@
+:root {
+    --sky-top: #e67e22;
+    --sky-bottom: #f39c12;
+    --sun-core: #fffef0;
+    --field-bright: #f1c40f;
+    --field-dark: #d4ac0d;
+    --leaf-green: #2d5a27;
+}
+
+body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+
+.canvas { position: relative; width: 100%; height: 100vh; background: #000; }
+
+/* CIELO REALISTA */
+.sky {
+    height: 60%;
+    background: linear-gradient(to bottom, var(--sky-top), var(--sky-bottom), #feca57);
+    position: relative;
+}
+
+.sun {
+    position: absolute;
+    top: 25%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px; height: 80px;
+    background: var(--sun-core);
+    border-radius: 50%;
+    box-shadow: 0 0 60px 20px rgba(255, 255, 255, 0.4), 0 0 120px 40px rgba(255, 200, 50, 0.3);
+}
+
+/* EFECTO DE NIEBLA EN EL HORIZONTE */
+.horizon-glow {
+    position: absolute;
+    top: 55%; width: 100%; height: 10%;
+    background: linear-gradient(to bottom, rgba(254, 202, 87, 0.8), transparent);
+    z-index: 2;
+}
+
+/* CAMPO DE FLORES CON PROFUNDIDAD */
+.field {
+    position: absolute;
+    bottom: 0; width: 100%; height: 45%;
+    background: var(--field-dark);
+    z-index: 3;
+    /* Degradado para dar perspectiva */
+    background: linear-gradient(to bottom, #b8860b 0%, var(--field-bright) 100%);
+}
+
+.texture {
+    width: 100%; height: 100%;
+    opacity: 0.4;
+    /* Puntos mucho más pequeños y difuminados para simular flores a lo lejos */
+    background-image: radial-gradient(#4d3b00 1px, transparent 1px);
+    background-size: 4px 4px;
+}
+
+/* HOJAS ORGÁNICAS (No más limones) */
+.leaves-container {
+    position: absolute;
+    top: 0; width: 100%; height: 25%;
+    display: flex; justify-content: space-around;
+    z-index: 10;
+}
+
+.branch {
+    width: 250px; height: 100%;
+    background: var(--leaf-green);
+    /* Forma de "racimo" de hojas usando clip-path */
+    clip-path: polygon(0% 0%, 100% 0%, 90% 20%, 95% 45%, 70% 35%, 80% 80%, 50% 60%, 20% 90%, 30% 40%, 5% 50%, 10% 20%);
+    filter: blur(1px) drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+    opacity: 0.9;
+}
+
+.b2 { transform: scaleX(-1) translateY(-10px); opacity: 0.8; }
+.b3 { transform: rotate(5deg) translateY(-20px); }
